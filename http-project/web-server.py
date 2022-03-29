@@ -7,7 +7,7 @@ serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 #Prepare the sever socket
 #FillInStart
-serverPort = 1234
+serverPort = 2424
 serverSocket.bind(('',serverPort))
 serverSocket.listen(1)
 #FillInEnd 
@@ -49,7 +49,7 @@ while True:
     except IOError:
         #Send HTTP response message for file not found
         #FillInStart
-        errorMessage = '404 Not Found'
+        errorMessage = "404 Not Found"
         connectionSocket.send(errorMessage.encode())
         #FillInEnd 
         

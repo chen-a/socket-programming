@@ -18,13 +18,16 @@ def recvall(sock):
 # Create a server socket, bind it to a port and start listening
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # FillInStart
+serverPort = 2525
+listener.bind(('', serverPort))
+listener.listen(1)
 # FillInEnd
 print('Ready to serve...')
 
 while True:
     # accept a connection from the client side and decode the message/request
     clientSide, addr = listener.accept()
-    message = #FillInStart #FillInEnd
+    message = clientSide.recv(1024).decode() #FillInStart #FillInEnd
     # for now, lets ignore all the requests that are not GET
     # the remaining requests will just be discarded and the client 
     # will receive no response for those requests
@@ -72,6 +75,9 @@ while True:
 
         # we open the socket to the server and make the request at port 80
         # FillInStart
+        serverSide = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        connectionPort = 80
+        serverSide.connect((file_path, connectionPort))
         # FillInEnd
 
         # using the port you have created above to send the GET request
@@ -95,6 +101,7 @@ while True:
 
     # send the outputdata (GET response) back to the client
     # FillInStart 
+    clientSide.send(outputdata.encode())
     # FillInEnd
     print("data sent")
 
