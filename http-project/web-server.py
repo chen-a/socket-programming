@@ -24,7 +24,6 @@ while True:
     try: 
         #Receive the request message from the client
         message = connectionSocket.recv(1024).decode() #FillInStart #FillInEnd 
-        
         #Extract the path of the requested object from the message
         #The path is the second part of HTTP header, identified by [1]
         filename = message.split()[1]
@@ -36,7 +35,8 @@ while True:
         
         #Send the HTTP response header line to the connection socket
         #FillInStart
-        connectionSocket.send(filename.encode())       
+        httpHeader = "HTTP/1.1 200 OK \r\n"
+        connectionSocket.send(httpHeader.encode())       
         #FillInEnd
 
         #Send the content of the requested file to the client 
@@ -49,7 +49,7 @@ while True:
     except IOError:
         #Send HTTP response message for file not found
         #FillInStart
-        errorMessage = "404 Not Found"
+        errorMessage = "HTTP/1.1 404 Not Found\r\n"
         connectionSocket.send(errorMessage.encode())
         #FillInEnd 
         
