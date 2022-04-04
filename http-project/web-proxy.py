@@ -77,7 +77,7 @@ while True:
         # FillInStart
         serverSide = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         connectionPort = 80
-        serverSide.connect((file_path, connectionPort))
+        serverSide.connect((domain, connectionPort))
         # FillInEnd
 
         # using the port you have created above to send the GET request
@@ -101,7 +101,7 @@ while True:
 
     # send the outputdata (GET response) back to the client
     # FillInStart 
-    clientSide.send(outputdata.encode())
+    clientSide.send(outputdata)
     # FillInEnd
     print("data sent")
 
